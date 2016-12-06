@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>dubbo_test</groupId>
-            <artifactId>dubboP</artifactId>
+            <artifactId>dubboFacade</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

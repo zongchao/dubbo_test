@@ -1,7 +1,7 @@
 package com.neko.dubbo.customer.service.impl;
 
 import com.neko.dubbo.customer.service.CustomerService;
-import com.neko.dubbo.service.ProviderService;
+import com.neko.dubbo.facade.service.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

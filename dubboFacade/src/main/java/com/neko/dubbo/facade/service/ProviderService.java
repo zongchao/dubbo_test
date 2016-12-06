@@ -1,4 +1,4 @@
-package com.neko.dubbo.service;
+package com.neko.dubbo.facade.service;
 
 /**
  * Created with IntelliJ IDEA.

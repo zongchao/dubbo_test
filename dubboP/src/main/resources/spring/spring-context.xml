@@ -28,5 +28,5 @@
     <dubbo:protocol name="dubbo" port="20880"/>
 
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service interface="com.neko.dubbo.service.ProviderService" ref="providerService"/>
+    <dubbo:service interface="com.neko.dubbo.facade.service.ProviderService" ref="providerService"/>
 </beans>

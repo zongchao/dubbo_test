@@ -20,6 +20,6 @@
         <dubbo:consumer timeout="5000" />
         <!-- which service to consume? -->
         <dubbo:reference id="providerService"
-                         interface="com.neko.dubbo.service.ProviderService" />
+                         interface="com.neko.dubbo.facade.service.ProviderService" />
 
 </beans>

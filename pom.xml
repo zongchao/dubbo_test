@@ -11,6 +11,7 @@
     <modules>
         <module>dubboP</module>
         <module>dubboC</module>
+        <module>dubboFacade</module>
     </modules>
     <properties>
         <org.springframework.version>RELEASE</org.springframework.version>

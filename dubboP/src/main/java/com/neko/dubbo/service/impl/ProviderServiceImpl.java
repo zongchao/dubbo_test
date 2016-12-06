@@ -1,6 +1,6 @@
 package com.neko.dubbo.service.impl;
 
-import com.neko.dubbo.service.ProviderService;
+import com.neko.dubbo.facade.service.ProviderService;
 import org.springframework.stereotype.Component;
 
 
