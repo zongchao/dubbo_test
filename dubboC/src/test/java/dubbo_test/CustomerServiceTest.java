@@ -24,6 +24,6 @@ public class CustomerServiceTest {
 
     @Test
     public void test() {
-        customerService.say("world");
+        customerService.say(" world");
     }
 }
