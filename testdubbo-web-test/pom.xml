@@ -7,10 +7,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>dubboC</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>testdubbo-web-test</artifactId>
+    <packaging>war</packaging>
 
-    <name>dubboC</name>
+    <name>testdubbo-web-test</name>
     <url>http://maven.apache.org</url>
 
     <properties>

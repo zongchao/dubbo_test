@@ -9,10 +9,10 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>dubboP</module>
-        <module>dubboC</module>
-        <module>dubboFacade</module>
-        <module>queue</module>
+        <module>testdubbo-facade-test</module>
+        <module>testdubbo-common-queue</module>
+        <module>testdubbo-web-test</module>
+        <module>testdubbo-service-test</module>
     </modules>
     <properties>
         <org.springframework.version>RELEASE</org.springframework.version>
@@ -32,7 +32,15 @@
                         <maxmem>1048m</maxmem>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
             </plugins>
+
         </pluginManagement>
     </build>
 
