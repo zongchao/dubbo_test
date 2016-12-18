@@ -5,19 +5,19 @@
        xmlns:amq="http://activemq.apache.org/schema/core"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd">
+       http://www.springframework.org/schema/jms
+       http://www.springframework.org/schema/jms/spring-jms.xsd">
 
     <!-- 配置activeMQ的链接工厂 failover为熔断模式-->
     <bean id="activeMQConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
         <property name="brokerURL" value="failover:(tcp://localhost:61616)?timeout=2000"/>
-        <property name="redeliveryPolicyMap" ref="redeliveryPolicyMap">
+        <property name="redeliveryPolicyMap" ref="redeliveryPolicyMap"/>
+        <property name="userName" value="system" />
+        <property name="password" value="manager" />
     </bean>
+
     <bean id="redeliveryPolicyMap" class="org.apache.activemq.broker.region.policy.RedeliveryPolicyMap">
-        <property name="redeliveryPolicyEntries">
-            <list>
-                <ref bean="redeliveryPolicy"/>
-            </list>
-        </property>
+        <property name="defaultEntry" ref="redeliveryPolicy"/>
     </bean>
     <bean id="redeliveryPolicy" class="org.apache.activemq.RedeliveryPolicy">
         <!--是否在每次尝试重新发送失败后,增长这个等待时间-->
