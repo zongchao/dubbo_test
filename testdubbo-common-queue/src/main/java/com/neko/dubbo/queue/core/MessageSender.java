@@ -6,10 +6,7 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 
-import javax.jms.Destination;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.Session;
+import javax.jms.*;
 import java.io.Serializable;
 
 /**
@@ -50,10 +47,12 @@ public class MessageSender {
     public void sendMessage(final Object msg) {
         String destination = jmsTemplate.getDefaultDestination().toString();
         System.out.println("向队列" + destination + "发送了消息------------" + msg);
+        String s = "123";
         jmsTemplate.send(new MessageCreator() {
             public Message createMessage(Session session) throws JMSException {
-                System.out.println("发送消息:" + msg);
-                return session.createObjectMessage((Serializable) msg);
+                ObjectMessage objectMessage = session.createObjectMessage((Serializable) msg);
+                objectMessage.setJMSCorrelationID(s);
+                return objectMessage;
             }
         });
 

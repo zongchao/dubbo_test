@@ -15,6 +15,8 @@ public class MessageLinstener implements MessageListener {
         //do something here
         try {
             System.out.println(" id:" + ((ObjectMessage) message).getObject());
+            System.out.println(message.getJMSCorrelationID());
+            System.out.println(message);
         } catch (JMSException e) {
             e.printStackTrace();
         }

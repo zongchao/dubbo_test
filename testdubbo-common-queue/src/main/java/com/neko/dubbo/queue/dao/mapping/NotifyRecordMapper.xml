@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.neko.dubbo.queue.dao.mapper.NotifyRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.neko.dubbo.queue.dao.po.NotifyRecord" >
+    <id column="notify_record_id" property="id" jdbcType="INTEGER" />
+    <result column="notify_record_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="notify_record_last_notify_time" property="lastNotifyTime" jdbcType="TIMESTAMP" />
+    <result column="notify_record_notify_times" property="notifyTimes" jdbcType="INTEGER" />
+    <result column="notify_record_notify_type" property="notifyType" jdbcType="INTEGER" />
+    <result column="notify_record_status" property="status" jdbcType="INTEGER" />
+    <result column="notify_record_fk" property="fk" jdbcType="INTEGER" />
+    <result column="notify_record_message_id" property="messageId" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.neko.dubbo.queue.dao.po.NotifyRecord" extends="BaseResultMap" >
+    <result column="notify_record_message" property="message" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    notify_record.id as notify_record_id, notify_record.create_time as notify_record_create_time, 
+    notify_record.last_notify_time as notify_record_last_notify_time, notify_record.notify_times as notify_record_notify_times, 
+    notify_record.notify_type as notify_record_notify_type, notify_record.status as notify_record_status, 
+    notify_record.fk as notify_record_fk, notify_record.message_id as notify_record_message_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    notify_record.message as notify_record_message
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.neko.dubbo.queue.dao.po.NotifyRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from notify_record notify_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.neko.dubbo.queue.dao.po.NotifyRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from notify_record notify_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from notify_record notify_record
+    where notify_record.id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from notify_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.neko.dubbo.queue.dao.po.NotifyRecordExample" >
+    delete from notify_record notify_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.neko.dubbo.queue.dao.po.NotifyRecord" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into notify_record (create_time, last_notify_time, notify_times, 
+      notify_type, status, fk, 
+      message_id, message)
+    values (#{createTime,jdbcType=TIMESTAMP}, #{lastNotifyTime,jdbcType=TIMESTAMP}, #{notifyTimes,jdbcType=INTEGER}, 
+      #{notifyType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{fk,jdbcType=INTEGER}, 
+      #{messageId,jdbcType=VARCHAR}, #{message,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.neko.dubbo.queue.dao.po.NotifyRecord" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into notify_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastNotifyTime != null" >
+        last_notify_time,
+      </if>
+      <if test="notifyTimes != null" >
+        notify_times,
+      </if>
+      <if test="notifyType != null" >
+        notify_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="fk != null" >
+        fk,
+      </if>
+      <if test="messageId != null" >
+        message_id,
+      </if>
+      <if test="message != null" >
+        message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastNotifyTime != null" >
+        #{lastNotifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="notifyTimes != null" >
+        #{notifyTimes,jdbcType=INTEGER},
+      </if>
+      <if test="notifyType != null" >
+        #{notifyType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="fk != null" >
+        #{fk,jdbcType=INTEGER},
+      </if>
+      <if test="messageId != null" >
+        #{messageId,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.neko.dubbo.queue.dao.po.NotifyRecordExample" resultType="java.lang.Integer" >
+    select count(*) from notify_record notify_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update notify_record notify_record
+    <set >
+      <if test="record.id != null" >
+        notify_record.id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        notify_record.create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastNotifyTime != null" >
+        notify_record.last_notify_time = #{record.lastNotifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.notifyTimes != null" >
+        notify_record.notify_times = #{record.notifyTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.notifyType != null" >
+        notify_record.notify_type = #{record.notifyType,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        notify_record.status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.fk != null" >
+        notify_record.fk = #{record.fk,jdbcType=INTEGER},
+      </if>
+      <if test="record.messageId != null" >
+        notify_record.message_id = #{record.messageId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.message != null" >
+        notify_record.message = #{record.message,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update notify_record notify_record
+    set notify_record.id = #{record.id,jdbcType=INTEGER},
+      notify_record.create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      notify_record.last_notify_time = #{record.lastNotifyTime,jdbcType=TIMESTAMP},
+      notify_record.notify_times = #{record.notifyTimes,jdbcType=INTEGER},
+      notify_record.notify_type = #{record.notifyType,jdbcType=INTEGER},
+      notify_record.status = #{record.status,jdbcType=INTEGER},
+      notify_record.fk = #{record.fk,jdbcType=INTEGER},
+      notify_record.message_id = #{record.messageId,jdbcType=VARCHAR},
+      notify_record.message = #{record.message,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update notify_record notify_record
+    set notify_record.id = #{record.id,jdbcType=INTEGER},
+      notify_record.create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      notify_record.last_notify_time = #{record.lastNotifyTime,jdbcType=TIMESTAMP},
+      notify_record.notify_times = #{record.notifyTimes,jdbcType=INTEGER},
+      notify_record.notify_type = #{record.notifyType,jdbcType=INTEGER},
+      notify_record.status = #{record.status,jdbcType=INTEGER},
+      notify_record.fk = #{record.fk,jdbcType=INTEGER},
+      notify_record.message_id = #{record.messageId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.neko.dubbo.queue.dao.po.NotifyRecord" >
+    update notify_record
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastNotifyTime != null" >
+        last_notify_time = #{lastNotifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="notifyTimes != null" >
+        notify_times = #{notifyTimes,jdbcType=INTEGER},
+      </if>
+      <if test="notifyType != null" >
+        notify_type = #{notifyType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="fk != null" >
+        fk = #{fk,jdbcType=INTEGER},
+      </if>
+      <if test="messageId != null" >
+        message_id = #{messageId,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null" >
+        message = #{message,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.neko.dubbo.queue.dao.po.NotifyRecord" >
+    update notify_record
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_notify_time = #{lastNotifyTime,jdbcType=TIMESTAMP},
+      notify_times = #{notifyTimes,jdbcType=INTEGER},
+      notify_type = #{notifyType,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      fk = #{fk,jdbcType=INTEGER},
+      message_id = #{messageId,jdbcType=VARCHAR},
+      message = #{message,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.neko.dubbo.queue.dao.po.NotifyRecord" >
+    update notify_record
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_notify_time = #{lastNotifyTime,jdbcType=TIMESTAMP},
+      notify_times = #{notifyTimes,jdbcType=INTEGER},
+      notify_type = #{notifyType,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      fk = #{fk,jdbcType=INTEGER},
+      message_id = #{messageId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

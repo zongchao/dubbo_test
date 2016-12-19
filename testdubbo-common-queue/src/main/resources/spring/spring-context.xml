@@ -9,10 +9,15 @@
     <!-- 采用注释的方式配置bean -->
     <context:annotation-config/>
 
+
     <!-- 配置要扫描的包 -->
     <context:component-scan base-package="com.neko.dubbo">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
     </context:component-scan>
 
     <import resource="spring-activemq.xml"/>
+    <import resource="spring-mybatis.xml" />
+
+
 </beans>
