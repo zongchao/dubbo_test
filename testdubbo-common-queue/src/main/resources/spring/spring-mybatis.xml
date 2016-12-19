@@ -79,7 +79,7 @@
     这种情况下,你可以使用 sqlSessionFactoryBeanName或sqlSessionTemplateBeanName
     属性来设置正确的 bean名称来使用。 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.neko.dubbo.queue.dao.mapper" />
+        <property name="basePackage" value="com.neko.dubbo.queue.dao.mapper,com.neko.dubbo.queue.dao.mapper"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

@@ -14,12 +14,34 @@
         <module>testdubbo-web-test</module>
         <module>testdubbo-service-test</module>
         <module>testdubbo-common-redis</module>
+        <module>test</module>
+        <module>ttt</module>
     </modules>
     <properties>
         <org.springframework.version>RELEASE</org.springframework.version>
     </properties>
 
     <build>
+            <resources>
+                <resource>
+                    <directory>src/main/java</directory>
+                    <includes>
+                        <include>**/*.xml</include>
+                    </includes>
+                    <filtering>true</filtering>
+                </resource>
+            </resources>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -143,6 +165,13 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-aspects</artifactId>
+                <version>${org.springframework.version}</version>
+                <type>jar</type>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
                 <version>${org.springframework.version}</version>
                 <type>jar</type>
                 <scope>compile</scope>
