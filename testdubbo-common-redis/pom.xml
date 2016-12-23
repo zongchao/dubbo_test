@@ -71,10 +71,5 @@
             <artifactId>spring-aspects</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>net.sourceforge.groboutils</groupId>
-            <artifactId>groboutils-core</artifactId>
-        </dependency>
-
     </dependencies>
 </project>

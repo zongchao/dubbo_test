@@ -22,25 +22,15 @@
     </properties>
 
     <build>
-            <resources>
-                <resource>
-                    <directory>src/main/java</directory>
-                    <includes>
-                        <include>**/*.xml</include>
-                    </includes>
-                    <filtering>true</filtering>
-                </resource>
-            </resources>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <source>1.8</source>
-                        <target>1.8</target>
-                    </configuration>
-                </plugin>
-            </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
 
         <pluginManagement>
             <plugins>
@@ -203,11 +193,11 @@
                 <version>1.6.6.RELEASE</version>
             </dependency>
             <!--<dependency>-->
-                <!--<groupId>redis.clients</groupId>-->
-                <!--<artifactId>jedis</artifactId>-->
-                <!--<version>2.4.0</version>-->
-                <!--<type>jar</type>-->
-                <!--<scope>compile</scope>-->
+            <!--<groupId>redis.clients</groupId>-->
+            <!--<artifactId>jedis</artifactId>-->
+            <!--<version>2.4.0</version>-->
+            <!--<type>jar</type>-->
+            <!--<scope>compile</scope>-->
             <!--</dependency>-->
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -235,11 +225,6 @@
                 <version>1.2.16</version>
             </dependency>
 
-            <dependency>
-                <groupId>net.sourceforge.groboutils</groupId>
-                <artifactId>groboutils-core</artifactId>
-                <version>5</version>
-            </dependency>
             <!-- 其他工具类 -->
 
 
