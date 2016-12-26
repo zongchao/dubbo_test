@@ -14,8 +14,6 @@
         <module>testdubbo-web-test</module>
         <module>testdubbo-service-test</module>
         <module>testdubbo-common-redis</module>
-        <module>test</module>
-        <module>ttt</module>
     </modules>
     <properties>
         <org.springframework.version>RELEASE</org.springframework.version>
