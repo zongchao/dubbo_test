@@ -18,6 +18,11 @@
     <dependencies>
 
         <dependency>
+            <groupId>dubbo_test</groupId>
+            <artifactId>testdubbo-common-config</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>

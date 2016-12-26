@@ -7,7 +7,7 @@
 
 
     <!-- 加载数据库属性配置文件 -->
-    <context:property-placeholder location="classpath:properties/jdbc.properties"/>
+    <context:property-placeholder location="classpath*:properties/jdbc.properties"/>
 
     <!--启用aop代理-->
     <!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
