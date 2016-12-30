@@ -20,24 +20,80 @@
         <org.springframework.version>RELEASE</org.springframework.version>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <build>
+                <resources>
+                    <!-- 通过此配置可以过滤或者包含对应的配置文件 -->
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <includes>
+                            <include>**/*.xml</include>
+                            <include>**/*.properties</include>
+                        </includes>
+                        <filtering>true</filtering>
+                    </resource>
+                    <resource>
+                        <directory>src/main/java</directory>
+                        <includes>
+                            <include>**/*.xml</include>
+                        </includes>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+            </build>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <build>
+                <resources>
+                    <!-- 通过此配置可以过滤或者包含对应的配置文件 -->
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <includes>
+                            <include>**/*.xml</include>
+                        </includes>
+                        <excludes>
+                            <exclude>**/*.properties</exclude>
+                        </excludes>
+                        <filtering>true</filtering>
+                    </resource>
+                    <resource>
+                        <directory>src/main/java</directory>
+                        <includes>
+                            <include>**/*.xml</include>
+                        </includes>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
+
+
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                    <include>**/*.properties</include>
-                </includes>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
+        <!--<resources>-->
+        <!--&lt;!&ndash; 通过此配置可以过滤或者包含对应的配置文件 &ndash;&gt;-->
+        <!--<resource>-->
+        <!--<directory>src/main/resources</directory>-->
+        <!--<includes>-->
+        <!--<include>**/*.xml</include>-->
+        <!--<include>**/*.properties</include>-->
+        <!--</includes>-->
+        <!--<filtering>true</filtering>-->
+        <!--</resource>-->
+        <!--<resource>-->
+        <!--<directory>src/main/java</directory>-->
+        <!--<includes>-->
+        <!--<include>**/*.xml</include>-->
+        <!--</includes>-->
+        <!--<filtering>true</filtering>-->
+        <!--</resource>-->
+        <!--</resources>-->
 
         <pluginManagement>
             <plugins>
@@ -56,18 +112,26 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <configuration>
-                        <skip>true</skip>
+                        <skipTests>true</skipTests>
                     </configuration>
                 </plugin>
             </plugins>
-
         </pluginManagement>
     </build>
 
+    <!-- 在dependencys中管理的包，全部子项目全部依赖 -->
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
+    <!-- 在dependencyManagement中管理的包，子项目挑选对应使用的包来引用 -->
     <dependencyManagement>
         <dependencies>
-
             <dependency>
                 <groupId>dubbo_test</groupId>
                 <artifactId>testdubbo-common-config</artifactId>
@@ -75,11 +139,6 @@
             </dependency>
 
 
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.12</version>
-            </dependency>
             <!-- dubbo相关依赖 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -267,4 +326,27 @@
             <!-- mybatis包-->
         </dependencies>
     </dependencyManagement>
+
+
+    <!--<profiles>-->
+
+    <!--<profile>-->
+    <!--<id>aaa</id>-->
+    <!--<build>-->
+    <!--<resources>-->
+    <!--<resource>-->
+    <!--<directory>src/main/resources</directory>-->
+    <!--<excludes>-->
+    <!--<exclude>**/*.properties</exclude>-->
+    <!--</excludes>-->
+    <!--<filtering>true</filtering>-->
+    <!--</resource>-->
+    <!--</resources>-->
+    <!--</build>-->
+    <!--<activation>-->
+    <!--<activeByDefault>true</activeByDefault>-->
+    <!--</activation>-->
+    <!--</profile>-->
+
+    <!--</profiles>-->
 </project>
