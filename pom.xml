@@ -21,6 +21,7 @@
     </properties>
 
     <profiles>
+        <!--开发环境中包含properties文件-->
         <profile>
             <id>dev</id>
             <build>
@@ -30,7 +31,7 @@
                         <directory>src/main/resources</directory>
                         <includes>
                             <include>**/*.xml</include>
-                            <include>**/*.properties</include>
+                            <!--<include>**/*.properties</include>-->
                         </includes>
                         <filtering>true</filtering>
                     </resource>
@@ -41,12 +42,20 @@
                         </includes>
                         <filtering>true</filtering>
                     </resource>
+                    <resource>
+                        <directory>env/dev</directory>
+                        <targetPath>properties</targetPath>
+                        <includes>
+                            <include>**/*.properties</include>
+                        </includes>
+                    </resource>
                 </resources>
             </build>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
+        <!--生产环境中排除properties文件-->
         <profile>
             <id>prod</id>
             <build>
@@ -57,9 +66,9 @@
                         <includes>
                             <include>**/*.xml</include>
                         </includes>
-                        <excludes>
-                            <exclude>**/*.properties</exclude>
-                        </excludes>
+                        <!--<excludes>-->
+                            <!--<exclude>**/*.properties</exclude>-->
+                        <!--</excludes>-->
                         <filtering>true</filtering>
                     </resource>
                     <resource>
@@ -68,6 +77,13 @@
                             <include>**/*.xml</include>
                         </includes>
                         <filtering>true</filtering>
+                    </resource>
+                    <resource>
+                        <directory>env/prod</directory>
+                        <targetPath>properties</targetPath>
+                        <includes>
+                            <include>**/*.properties</include>
+                        </includes>
                     </resource>
                 </resources>
             </build>
