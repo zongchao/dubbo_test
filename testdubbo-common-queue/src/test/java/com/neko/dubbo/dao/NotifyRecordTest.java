@@ -3,6 +3,7 @@ package com.neko.dubbo.dao;
 import com.neko.dubbo.queue.dao.mapper.NotifyRecordMapper;
 import com.neko.dubbo.queue.dao.po.NotifyRecord;
 import com.neko.dubbo.queue.service.NotifyRecordService;
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = {"classpath:spring/spring-context.xml"})
 public class NotifyRecordTest {
 
+    Logger logger = Logger.getLogger(NotifyRecordTest.class);
     @Autowired
     NotifyRecordMapper notifyRecordMapper;
 

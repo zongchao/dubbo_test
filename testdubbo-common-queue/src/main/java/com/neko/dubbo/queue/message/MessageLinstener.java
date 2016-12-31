@@ -1,4 +1,4 @@
-package com.neko.dubbo.queue.core;
+package com.neko.dubbo.queue.message;
 
 import javax.jms.JMSException;
 import javax.jms.Message;

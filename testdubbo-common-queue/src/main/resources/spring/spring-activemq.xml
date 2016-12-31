@@ -74,7 +74,7 @@
     </jms:listener-container>
 
     <!--消息监听器-->
-    <bean id="consumerMessageListener" class="com.neko.dubbo.queue.core.MessageLinstener"/>
+    <bean id="consumerMessageListener" class="com.neko.dubbo.queue.message.MessageLinstener"/>
     <!--&lt;!&ndash;消息监听容器&ndash;&gt;-->
     <!--&lt;!&ndash; sessionTransacted 开启事务，当消费发生异常时重新入队&ndash;&gt;-->
     <!--<bean id="jmsContainer"-->

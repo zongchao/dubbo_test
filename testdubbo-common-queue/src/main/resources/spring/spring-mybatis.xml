@@ -13,7 +13,7 @@
     <!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
 
     <!-- 使用annotation定义事务 （使用注解定义事务） -->
-    <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
+    <tx:annotation-driven transaction-manager="txManager"/>
 
     <!-- ||||||||||||||数据源的配置||||||||||||||||| -->
     <bean id="writeDataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">

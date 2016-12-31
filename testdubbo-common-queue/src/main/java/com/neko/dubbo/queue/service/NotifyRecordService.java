@@ -1,5 +1,6 @@
 package com.neko.dubbo.queue.service;
 
+import com.neko.dubbo.common.exceptions.BaseException;
 import com.neko.dubbo.queue.dao.po.NotifyRecord;
 
 /**
@@ -7,7 +8,10 @@ import com.neko.dubbo.queue.dao.po.NotifyRecord;
  */
 public interface NotifyRecordService {
 
-    public NotifyRecord findById(Integer id);
+    NotifyRecord findById(Integer id);
+
+    int insert(NotifyRecord notifyRecord) throws Exception;
+
 }
 
 
