@@ -91,6 +91,11 @@
                 <artifactId>testdubbo-common-core</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
+            <dependency>
+                <groupId>dubbo_test</groupId>
+                <artifactId>testdubbo-facade-test</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
 
             <!-- dubbo相关依赖 -->
             <dependency>
