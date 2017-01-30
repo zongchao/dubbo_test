@@ -70,7 +70,8 @@
     <jms:listener-container destination-type="queue" container-type="default" connection-factory="connectionFactory"
                             acknowledge="transacted" message-converter="messageConverter"
                             concurrency="4-8">
-        <jms:listener destination="queue" ref="consumerMessageListener"/>
+        <!--<jms:listener destination="queue" ref="consumerMessageListener"/>-->
+        <jms:listener destination="test2" ref="consumerMessageListener"/>
     </jms:listener-container>
 
     <!--消息监听器-->

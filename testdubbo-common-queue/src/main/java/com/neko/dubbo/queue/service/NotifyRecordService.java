@@ -10,8 +10,11 @@ public interface NotifyRecordService {
 
     NotifyRecord findById(Integer id);
 
+    NotifyRecord findByMessageId(String messageId);
+
     int insert(NotifyRecord notifyRecord) throws Exception;
 
+    int update(NotifyRecord notifyRecord);
 }
 
 

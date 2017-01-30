@@ -45,7 +45,6 @@ public class MessageSender {
      */
     public void sendMessage(Destination destination, final Object msg) {
         System.out.println("向队列" + destination.toString() + "发送了消息------------" + msg);
-
         try {
             NotifyRecord notifyRecord = new NotifyRecord();
             notifyRecord.setStatus(BaseStatusEnum.INIT.getValue());
@@ -53,13 +52,12 @@ public class MessageSender {
             notifyRecordService.insert(notifyRecord);
 
             final String messageId = notifyRecord.getMessageId();
-            jmsTemplate.send(destination, new MessageCreator() {
-                public Message createMessage(Session session) throws JMSException {
-                    ObjectMessage objectMessage = session.createObjectMessage((Serializable) msg);
-                    objectMessage.setJMSCorrelationID(messageId);
-                    return objectMessage;
-                }
+            jmsTemplate.send(destination, session -> {
+                ObjectMessage objectMessage = session.createObjectMessage((Serializable) msg);
+                objectMessage.setJMSCorrelationID(messageId);
+                return objectMessage;
             });
+
         } catch (Exception e) {
             e.printStackTrace();
         }

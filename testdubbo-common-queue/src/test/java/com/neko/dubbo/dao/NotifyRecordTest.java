@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Optional;
+
 /**
  * Created by ssjk on 2016/12/19.
  */
@@ -34,6 +36,13 @@ public class NotifyRecordTest {
     public void test2() {
         NotifyRecord notifyRecord = notifyRecordService.findById(1);
         System.out.println(notifyRecord.getId());
+    }
+
+    @Test
+    public void test3() {
+        NotifyRecord notifyRecord = new NotifyRecord();
+        notifyRecord.setNotifyTimes(1);
+        System.out.println(Optional.ofNullable(notifyRecord.getNotifyTimes()).orElseGet(() -> 0) + 1);
     }
 
 }
